@@ -29,7 +29,7 @@ public class TouchSensingApp extends ApplicationAdapter implements InputProcesso
 	
 	@Override
 	public void create () {
-		texture = new Texture("badlogic.jpg");
+		texture = new Texture("pupper.jpg");
 		sprite = new Sprite(texture);
 		batch = new SpriteBatch();
 		touches = new HashMap< Integer, TouchInfo>();
