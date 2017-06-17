@@ -149,6 +149,13 @@ public class TouchSensingApp extends ApplicationAdapter implements InputProcesso
 	 */
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		if (pointer < 5) {
+			TouchInfo touch = touches.get(pointer);
+			touch.touched = true;
+			touch.touchX = screenX;
+			touch.touchY = screenY;
+			return true;
+		}
 		return false;
 	}
 
