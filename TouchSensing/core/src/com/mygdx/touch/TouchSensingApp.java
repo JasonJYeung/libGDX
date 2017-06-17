@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.HashMap;
@@ -53,15 +54,21 @@ public class TouchSensingApp extends ApplicationAdapter implements InputProcesso
 			if (touch.touched) {
 				msg += "Pointer " + i + ": "
 						+ touch.touchX + ", " + touch.touchY + "\n";
-				sprite.setPosition(touch.touchX, touch.touchY);
+				sprite.setPosition(touch.touchX - sprite.getRegionWidth() / 2,
+						h - touch.touchY - sprite.getRegionHeight() / 2);
 				sprite.draw(batch);
 			}
 		}
+		GlyphLayout layout = new GlyphLayout();
+		layout.setText(font, msg);
+		float textW = layout.width,
+			  textH = layout.height;
+
 
 
 		font.setColor(Color.RED);
-
-		font.draw(batch, msg, 200, 200);
+		font.getData().setScale(3, 3);
+		font.draw(batch, msg, w / 2 - textW / 2, h / 2 - textH - 2);
 		batch.end();
 	}
 	
